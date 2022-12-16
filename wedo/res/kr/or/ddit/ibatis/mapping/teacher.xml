@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 iBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="teacher">
+
+	<select id="getAllTeacher" resultClass="teacherVO">
+		select * from teacher
+	</select>
+
+	<select id="teacherIdSearch" resultClass="teacherVO" parameterClass="string">
+		select * from teacher where teacher_id = #teacher_id#
+
+	</select>
+	
+	   <select id="loginTeacher" resultClass="teacherVO" parameterClass="teacherVO">
+		select * from teacher where teacher_id=#teacher_id# and teacher_pass=#teacher_pass#
+
+	</select>
+	
+	<select id="adminGetTeacher" resultClass="TeacherVO" parameterClass="String">
+		select * from teacher where teacher_id = #teacher_id#
+	</select>
+	
+	
+	  <insert id="insertTeacher"  parameterClass="teacherVO" >                   <!-- 회원가입 -->
+		insert into teacher (teacher_id, teacher_pass, teacher_name, teacher_mail, teacher_tel, teacher_withdrawal)
+		values (#teacher_id#, #teacher_pass#, #teacher_name#, #teacher_mail#, #teacher_tel#, #teacher_withdrawal#)
+   </insert>
+    
+    
+     <select id="idSearchTeacher" resultClass="teacherVO" parameterClass="teacherVO"><!-- 아이디찾기 -->
+		select teacher_id from teacher where teacher_name=#teacher_name# and teacher_tel=#teacher_tel#
+
+	</select>
+   
+   
+    <select id="passSearchTeacher" resultClass="teacherVO" parameterClass="teacherVO"><!-- 비번찾기 -->
+		select * from teacher where teacher_id=#teacher_id# and teacher_tel=#teacher_tel#
+
+	</select>
+	
+	  <update id="updateTeacher" parameterClass="teacherVO">                        <!-- 회원정보수정 -->
+		update teacher set teacher_tel=#teacher_tel#, teacher_mail=#teacher_mail# 
+		where teacher_id = #teacher_id#
+	</update>
+	
+	
+		  <update id="updatePassTeacher" parameterClass="teacherVO">                 <!-- 비밀번호수정 -->
+		update teacher set teacher_pass=#teacher_pass#
+		where teacher_id = #teacher_id#
+	</update>
+	
+	<select id="getTeacher" resultClass="teacherVO" parameterClass="String">        <!-- 클래스번호의 강사정보 -->
+		SELECT * FROM TEACHER WHERE TEACHER_ID = (SELECT TEACHER_ID FROM CLASS WHERE CLASS_NO = #class_no#)
+	</select>
+	
+	
+	 <update id="withDrawalTeacher" parameterClass="teacherVO">                 <!-- 강사탈퇴 -->
+		update teacher set teacher_withdrawal=#teacher_withdrawal#
+		where teacher_id = #teacher_id#
+	</update>
+	
+</sqlMap>

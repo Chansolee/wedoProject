@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 iBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="enrollclass">
+
+  
+	<select id="enrollSelect" resultClass="enrollclassVO" parameterClass="String">
+		select c.class_name, e.enr_period, floor(enr_period-sysdate) dday, c.class_no
+ 		  from enroll e, class c 
+ 		 where ENR_PERIOD-sysdate > 0  
+   		   and c.class_no = e.class_no
+   		   and e.mem_id = #mem_id#
+	</select> 
+
+</sqlMap>

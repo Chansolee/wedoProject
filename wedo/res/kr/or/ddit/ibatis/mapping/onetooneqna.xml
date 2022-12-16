@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 iBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="onetooneqna">
+
+		<select id="getAllOneToOneQna" resultClass="onetooneqnaVO">
+			select * from one_to_one_qna
+		</select>
+   		
+   		<select id="selectMemQna" resultClass="onetooneqnaVO" parameterClass="String">
+  		 select one_qna_title, one_qna_content, one_qna_no, one_qna_date, q.mem_id, q.teacher_id, mem_name, teacher_name
+  		      from one_to_one_qna q, member m, teacher t
+             where q.mem_id = #mem_id#
+               and q.mem_id = m.mem_id
+               and q.teacher_id = t.teacher_id
+               order by one_qna_date desc
+   		</select>
+
+		<select id="selectTeacherQna" resultClass="onetooneqnaVO" parameterClass="String">
+			select one_qna_title, one_qna_content, one_qna_no, one_qna_date, q.mem_id, q.teacher_id, mem_name, teacher_name
+  			  from one_to_one_qna q, member m, teacher t 
+ 		     where q.teacher_id = #teacher_id# 
+   			   and Q.TEACHER_ID=t.TEACHER_ID
+   			   and q.mem_id = m.mem_id
+   			   order by one_qna_date desc
+		</select>
+
+		<insert id="insertQna" parameterClass="onetooneqnaVO">
+			insert into ONE_TO_ONE_QNA (one_qna_title, one_qna_content, one_qna_date, one_qna_no, mem_id, teacher_id)
+			values(#one_qna_title#, #one_qna_content#, sysdate, qna_seq.nextval, #mem_id#, #teacher_id#)
+		
+		</insert>
+		
+		<delete id="deleteQna">
+			delete from one_to_one_qna where one_qna_no = #one_qna_no#
+		</delete>
+		
+		<!-- 글번호 입력하여 해당게시물 내용 받아옴 -->
+		<select id="selectQnaNo" resultClass="onetooneqnaVO" parameterClass="int">
+			select * from one_to_one_qna where one_qna_no = #one_qna_no#
+		</select>
+		
+		<update id="updateQna" parameterClass="onetooneqnaVO">
+			update one_to_one_qna 
+			  set one_qna_title = #one_qna_title#, one_qna_content = #one_qna_content#
+		    where one_qna_no = #one_qna_no#
+		</update>
+
+		
+</sqlMap>

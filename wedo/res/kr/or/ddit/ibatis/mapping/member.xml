@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 iBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="member">
+	<!-- 이 영역에는 처리할 SQL문에 맞는 태그를 사용하여 SQL문을 작성한다. 사용할 수 있는 기본적인 태그들... <select> 
+		~~~select 쿼리문작성 </select> <insert> ~~~insert문장~~~~</insert> <update>~~~update 
+		문장~~</update> <delete>~~~delete문장~~~</delete> ... -->
+
+	<!-- id속성 => 실행할 태그를 Java소스에서 호출할 때 사용하는 이름으로 <sqlMap>태그의 namespace속성값과 
+		연결해서 사용한다. 형식) namespace속성값.실행태그의 id속성값 예) lprod.insertLprod parameterClass속성 
+		==> SQL문에 사용할 데이터가 들어있는 객체를 기술한다. (보통 VO클래스, Map객체, 자바의 기본자료형이름 등이 사용된다. 
+		) <VO클래스등을 기술할 떄는 해당 클래스의 패키지명을 포함한 전체 이름을 기술해야 한다. <typeAlias>에 설정할 alias가 
+		있으면 그 alias를 사용할 수 있다. ) -->
+	<!-- <insert id="insertlprod" parameterClass="kr.or.ddit.vo.LprodVO"> -->
+
+
+
+	
+<!-- 	  <select id="countlprod" resultClass="lprodVo"> -->
+<!-- 		select nvl(max(lprod_id),0)+1 max from lprod -->
+<!--     </select> -->
+	    
+     
+   
+  	<delete id="deleteMember" parameterClass="String">
+		delete from member where mem_id=#mem_id#
+	</delete>
+   
+
+ 	  
+ 	<select id="getAllMember" resultClass="memberVO">
+		select * from member
+
+	</select>
+   
+   <select id = "getMember" resultClass="MemberVO" parameterClass="String">
+   		select * from member where mem_id = #mem_id#
+   </select>
+   
+    <select id="countMember" parameterClass="string" resultClass="int">
+		select count(*) cnt from member where mem_id=#mem_id#
+    </select>
+    
+    
+    <select id="idSearch" resultClass="memberVO" parameterClass="string"><!-- 아이디중복체크 -->
+		select * from member where mem_id=#mem_id#
+
+	</select>
+   
+   <select id="loginMember" resultClass="memberVO" parameterClass="memberVO"> <!-- 로그인 -->
+		select * from member where mem_id=#mem_id# and mem_pass=#mem_pass#
+
+	</select>
+    
+     <insert id="insertMember"  parameterClass="memberVO" >                   <!-- 회원가입 -->
+		insert into member (mem_id, mem_pass, mem_name, mem_mail, mem_tel, mem_addr1, mem_addr2, mem_regno1, mem_regno2, mem_withdrawal)
+		values (#mem_id#, #mem_pass#, #mem_name#, #mem_mail#, #mem_tel#, #mem_addr1#, #mem_addr2#, #mem_regno1#, #mem_regno2#, #mem_withdrawal#)
+   </insert>
+    
+    
+     <select id="idSearchMember" resultClass="memberVO" parameterClass="memberVO"><!-- 아이디찾기 -->
+		select mem_id from member where mem_name=#mem_name# and mem_tel=#mem_tel#
+
+	</select>
+   
+   
+    <select id="passSearchMember" resultClass="memberVO" parameterClass="memberVO"><!-- 비번찾기 -->
+		select * from member where mem_id=#mem_id# and mem_tel=#mem_tel#
+
+	</select>
+	
+	  <update id="updateMember" parameterClass="memberVO">                        <!-- 회원정보수정 -->
+		update member set mem_addr1=#mem_addr1#, mem_addr2=#mem_addr2#, mem_tel=#mem_tel#, mem_mail=#mem_mail# 
+		where mem_id = #mem_id#
+	</update>
+	
+	
+	  <update id="updatePassMember" parameterClass="memberVO">                 <!-- 비밀번호수정 -->
+		update member set mem_pass=#mem_pass#
+		where mem_id = #mem_id#
+	</update>
+   
+   
+    <update id="withDrawalMember" parameterClass="memberVO">                 <!-- 회원탈퇴 -->
+		update member set mem_withdrawal=#mem_withdrawal#
+		where mem_id = #mem_id#
+	</update>
+
+
+
+  <select id="selectClassMember" resultClass="memberVO" parameterClass="String"> <!-- 강사페이지에서 수강생조회 -->
+		select m.mem_id, m.mem_name, m.mem_mail
+  from class c, enroll e, member m
+ where c.teacher_id=#teacher_id# 
+   and c.class_no = e.class_no 
+   and e.mem_id = m.mem_id
+   and e.enr_period-sysdate > 0
+	</select>
+</sqlMap>

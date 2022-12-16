@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Table 08</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-4">
+					<h2 class="heading-section">강좌 관리</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="h5 mb-4 text-center">강좌 목록</h3>
+					<div class="table-wrap">
+						<table class="table myaccordion table-hover" id="accordion">
+						  <thead>
+						    <tr>
+						      <th>순번</th>
+						      <th>강좌 제목</th>
+						       <th>&nbsp;</th> 
+						      <th>작성자</th>
+						      <th>작성일</th>
+						      <th>&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+						      <th scope="row">1강</th>
+						      <td>안톤의 오리엔테이션</td>
+				 		      <td>&nbsp;</td> 
+						      <td>이찬솔</td>
+						      <td>2022.08.10</td>
+						      <td>
+						      	<i class="fa" aria-hidden="false"></i>
+				        	</td>
+						    </tr>
+						    <tr>
+						    	<td colspan="6" id="collapseOne" class="collapse acc" data-parent="#accordion">
+						    		<p>강좌 설명</p>
+						    		<iframe style="width:70%; height:450px; margin-left: 15%;" src="https://www.youtube.com/embed/b1F2AVsJ05c" title="YouTube video player" onclick="playShow()"></iframe>
+									<button class="btn btn-primary" style="margin-left: 875px; margin-bottom: -27px; padding: 4px 10px;">수정</button>
+									&nbsp;
+									<button class="btn btn-info"  style="margin-bottom: -27px; padding: 4px 10px;">삭제</button>
+								</td>
+						    </tr>
+						   
+						    <!--  -->
+	
+						    <tr data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
+						      <th scope="row">2</th>
+						      <td>Laptop Technology AS2020</td>
+						      <td>&nbsp;</td>
+						      <td>2</td>
+						      <td>$400.00</td>
+						      <td>
+						      	<i class="fa" aria-hidden="false"></i>
+				        	</td>
+						    </tr>
+								<tr>
+						    	<td colspan="6" id="collapseTwo" class="collapse acc" data-parent="#accordion">
+						    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro iste, facere sunt sequi nostrum ipsa, amet doloremque magnam reiciendis tempore sapiente. Necessitatibus recusandae harum nam sit perferendis quia inventore natus.</p>
+						    	</td>
+						    </tr>
+
+						    <tr data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="collapsed">
+						      <th scope="row">3</th>
+						      <td>Laptop Technology AS2020</td>
+						      <td>&nbsp;</td>
+						      <td>2</td>
+						      <td>$400.00</td>
+						      <td>
+						      	<i class="fa" aria-hidden="false"></i>
+				        	</td>
+						    </tr>
+								<tr>
+						    	<td colspan="6" id="collapseThree" class="collapse acc" data-parent="#accordion">
+						    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro iste, facere sunt sequi nostrum ipsa, amet doloremque magnam reiciendis tempore sapiente. Necessitatibus recusandae harum nam sit perferendis quia inventore natus.</p>
+						    	</td>
+						    </tr>
+
+						    <tr data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" class="collapsed">
+						      <th scope="row">4</th>
+						      <td>Laptop Technology AS2020</td>
+						      <td>&nbsp;</td>
+						      <td>2</td>
+						      <td>$400.00</td>
+						      <td>
+						      	<i class="fa" aria-hidden="false"></i>
+				        	</td>
+						    </tr>
+								<tr>
+						    	<td colspan="6" id="collapseFour" class="collapse acc" data-parent="#accordion">
+						    		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro iste, facere sunt sequi nostrum ipsa, amet doloremque magnam reiciendis tempore sapiente. Necessitatibus recusandae harum nam sit perferendis quia inventore natus.</p>
+						    	</td>
+						    </tr> 
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		<input idx="'+ v.num + '" type="button" value="강좌 등록" name="reply1" class="action" style="margin-left: 1000px;">
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+	</body>
+</html>
+

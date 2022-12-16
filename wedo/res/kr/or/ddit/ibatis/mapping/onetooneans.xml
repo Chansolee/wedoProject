@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 iBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE sqlMap
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="onetooneans">
+		
+		<select id="getAns" resultClass="onetooneansVO" parameterClass="int">
+			select b.one_qna_no, one_ans_no, one_ans_content, one_ans_date, one_ans_id
+ 			  from one_to_one_qna a, one_to_one_ans b 
+ 			 where a.one_qna_no = #one_qna_no#
+   			   and a.one_qna_no = b.one_qna_no
+   		     order by one_ans_no asc
+		</select>
+		
+		<select id="getAllAns" resultClass="onetooneansVO" parameterClass="String">
+			select b.one_qna_no, one_ans_no, one_ans_content, one_ans_date, one_ans_id
+  			  from one_to_one_qna a, one_to_one_ans b 
+ 			 where a.mem_id = #mem_id#
+   	           and a.one_qna_no = b.one_qna_no
+   			 order by one_ans_no asc
+		</select>
+		
+		<select id="getAllTeacherAns" resultClass="onetooneansVO" parameterClass="String">
+			select b.one_qna_no, one_ans_no, one_ans_content, one_ans_date, one_ans_id
+  			  from one_to_one_qna a, one_to_one_ans b 
+ 			 where a.teacher_id = #teacher_id#
+   	           and a.one_qna_no = b.one_qna_no
+   			 order by one_ans_no asc
+		
+		</select>
+		
+		<insert id="replyAns" parameterClass="onetooneansVO">
+			insert into one_to_one_ans(one_ans_no, one_ans_content, one_ans_date, one_qna_no, one_ans_id)
+			values(ONE_QNA_SEQ.nextval, #one_ans_content# , sysdate, #one_qna_no# , #one_ans_id#)
+		</insert>
+		
+		<!-- 댓글삭제 -->
+		<delete id="replyDelete" parameterClass="int">
+			delete from one_to_one_ans where one_ans_no = #one_ans_no#
+		</delete>
+		
+		<!-- 글삭제를 위한 하위 댓글전부삭제 -->
+		
+		<delete id="replyAllDelete" parameterClass="int">
+			delete from one_to_one_ans where one_qna_no = #one_qna_no#
+		</delete>
+		
+		
+		<select id="selectAns" resultClass="onetooneansVO" parameterClass="int">
+			select * from one_to_one_ans where one_ans_no= #one_ans_no#
+		</select>
+		
+		<update id="updateAns" parameterClass="onetooneansVO">
+			update  ONE_TO_ONE_ANS
+			   set one_ans_content = #one_ans_content#
+		     where one_ans_no = #one_ans_no#
+		</update>
+		
+</sqlMap>
+
+
+
